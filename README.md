@@ -13,11 +13,13 @@ Markdown
 
 ## 🧪 Test Cases
 | Case ID | Description | Status |
-| **TC-001** | Login Success | ✅ |
-| **TC-002** | Login Fail User Locked Out | ✅ |
-| **TC-003** | Login Fail Invalid Password | ✅ |
-| **TC-004** | เพิ่มสินค้าหลายรายการเข้าตะกร้าและตรวจสอบสถานะปุ่ม | ✅ |
-| **TC-005** | E2E Checkout: สั่งซื้อสินค้าและตรวจสอบความถูกต้องของราคารวม | ✅ |
+- | **TC-001** | Login Success | ✅ |
+- | **TC-002** | Login Fail User Locked Out | ✅ |
+- | **TC-003** | Login Fail Invalid Password | ✅ |
+- | **TC-004** | Add Product To Cart | ✅ |
+- | **TC-005** | Product Sorting (Filter Price Low to High) | ✅ |
+- | **TC-006** | Remove Product Out Of Cart | ✅ |
+- | **TC-000** | E2E Checkout: สั่งซื้อสินค้าและตรวจสอบความถูกต้องของราคารวม | ✅ |
 
 ## 🛠️ Tech Stack
 - **Framework:** Playwright (TypeScript)
