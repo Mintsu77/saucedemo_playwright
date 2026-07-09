@@ -23,6 +23,6 @@ test('Login Fail (user locked)', async ({ page }) => {
     fullPage: true
   });
 
-  console.log('✅ TC_Login_002 Passed!!');
+  console.log('✅ TC002_User_Locked_out Passed!!');
 
 });

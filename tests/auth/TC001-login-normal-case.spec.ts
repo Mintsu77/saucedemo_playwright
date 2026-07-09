@@ -23,6 +23,6 @@ test('Login Success', async ({ page }) => {
     fullPage: true
   });
 
-  console.log('✅ TC_Login_001 Passed!!');
+  console.log('✅ TC001_Normal_User Passed!!');
 
 });
