@@ -3,10 +3,12 @@ import { type Page, type Locator, expect } from '@playwright/test';
 export class InventoryPage {
   readonly page: Page;
   readonly cartBadge: Locator;
+  readonly cartLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.cartBadge = page.locator('.shopping_cart_badge');
+    this.cartLink = page.locator('[data-test="shopping-cart-link"]');
   }
 
   /**
@@ -47,5 +49,9 @@ export class InventoryPage {
   async verifyCartBadgeCount(expectedCount: string) {
     await expect(this.cartBadge).toHaveText(expectedCount);
     console.log(`[POM] ตรวจสอบจำนวนรถเข็นถูกต้อง: มีสินค้าทั้งหมด ${expectedCount} ชิ้น`);
+  }
+
+  async goToCart() {
+    await this.cartLink.click();
   }
 }
