@@ -12,9 +12,18 @@ export class InventoryPage {
   }
 
   /**
-   * ฟังก์ชันดึง Locator ของปุ่มจัดการสินค้าแผ่นเดียวกัน (Reusable Dynamic Locator)
+   * ฟังก์ชัน สำหรับจัดการเปลี่ยน Dropdown
    */
-  getProductButton(itemName: string): Locator {
+  async sortProductBy(optionValue: string) { 
+    const priceTextBF = await this.page.locator('.inventory_item_price').first().textContent();
+    await this.page.locator('[data-test="product-sort-container"]').selectOption(optionValue);
+    const priceTextAF = await this.page.locator('.inventory_item_price').first().textContent();
+    console.log(`[POM] ราคาสินค้าชิ้นแรกก่อน Sort: ${priceTextBF} | ราคาสินค้าชิ้นแรกหลัง Sort: ${priceTextAF} `);
+  }
+
+  
+  //--- ฟังก์ชันดึง Locator ของปุ่มจัดการสินค้าแผ่นเดียวกัน (Reusable Dynamic Locator) ---
+    getProductButton(itemName: string): Locator {
     // ใช้ได้ทั้งปุ่ม add-to-cart และ remove ของสินค้านั้นๆ บนหน้าเว็บ
     return this.page.locator(`[data-test$="-${itemName}"]`);
   }
@@ -47,8 +56,30 @@ export class InventoryPage {
    * ฟังก์ชันกลางสำหรับตรวจสอบจำนวนสินค้าบนรถเข็น
    */
   async verifyCartBadgeCount(expectedCount: string) {
-    await expect(this.cartBadge).toHaveText(expectedCount);
+    if (expectedCount === '0') {
+      await expect(this.cartBadge).toBeHidden();
+    } else {
+      await expect(this.cartBadge).toHaveText(expectedCount);
+    }
+
     console.log(`[POM] ตรวจสอบจำนวนรถเข็นถูกต้อง: มีสินค้าทั้งหมด ${expectedCount} ชิ้น`);
+  }
+
+  async removeItem (itemNames: string[]) {
+    for (const item of itemNames) {
+      const productButton = this.getProductButton(item);
+      await productButton.click();
+      console.log(`[POM] กดลบสินค้า: ${item} ออกจากตะกร้าแล้ว`);
+    }
+  }
+
+  async verifyButtonChangedToAddToCart(removeItemNames: string[]) {
+    for (const item of removeItemNames) {
+      const productButton = this.getProductButton(item);
+      // วนลูปตรวจสอบว่าปุ่มของสินค้าทุกชิ้นในลิสต์ ต้องขึ้นคำว่า 'Add to cart'
+      await expect(productButton).toHaveText('Add to cart');
+      console.log(`[POM] ตรวจสอบสถานะ: ปุ่มของ ${item} เปลี่ยนเป็น 'Add to cart' ถูกต้อง`);
+    }
   }
 
   async goToCart() {
