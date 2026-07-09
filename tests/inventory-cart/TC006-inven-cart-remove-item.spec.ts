@@ -48,4 +48,7 @@ test('Remove Item', async ({ page }) => {
     path: 'test-result/screenshots/TC006-inven-cart-remove-item.png',
     fullPage: true
   });
+
+  console.log('✅ TC006-inven-cart-remove-item Passed!!');
+
 });
