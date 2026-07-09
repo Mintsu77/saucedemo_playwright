@@ -4,6 +4,11 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  
+  # 🎯 รันทุกเที่ยงคืนตรงของเวลาไทย!
+  schedule:
+    - cron: '0 17 * * *'
+
 jobs:
   test:
     timeout-minutes: 60
