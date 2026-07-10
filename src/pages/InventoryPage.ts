@@ -23,10 +23,15 @@ export class InventoryPage {
 
   
   //--- ฟังก์ชันดึง Locator ของปุ่มจัดการสินค้าแผ่นเดียวกัน (Reusable Dynamic Locator) ---
-    getProductButton(itemName: string): Locator {
-    // ใช้ได้ทั้งปุ่ม add-to-cart และ remove ของสินค้านั้นๆ บนหน้าเว็บ
-    return this.page.locator(`[data-test$="-${itemName}"]`);
-  }
+  getProductButton(itemName: string) {
+  // ✨ แปลงจาก 'Sauce Labs Backpack' -> 'sauce-labs-backpack'
+  const formattedName = itemName
+    .toLowerCase()         // แปลงเป็นตัวพิมพ์เล็กทั้งหมด
+    .replace(/\s+/g, '-'); // เปลี่ยนช่องว่าง (Space) ให้กลายเป็นขีดกลาง (-)
+
+  // เอาค่า formattedName ที่แปลงผิวเสร็จแล้วไปใส่ใน Locator ตัวเดิม
+  return this.page.locator(`[data-test$="-${formattedName}"]`); 
+}
 
   /**
    * ฟังก์ชันกลางสำหรับกดเพิ่มสินค้าเข้าตะกร้า

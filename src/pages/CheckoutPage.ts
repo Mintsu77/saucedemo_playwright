@@ -17,7 +17,7 @@ export class CheckoutPage {
    * ฟังก์ชันกรอกข้อมูลที่อยู่สั่งซื้อ
    */
   async fillInformation(firstName: string, lastName: string, postalCode: string) {
-    await this.page.locator('[data-test="checkout"]').click();
+    //await this.page.locator('[data-test="checkout"]').click();
     await this.page.locator('[data-test="firstName"]').fill(firstName);
     await this.page.locator('[data-test="lastName"]').fill(lastName);
     await this.page.locator('[data-test="postalCode"]').fill(postalCode);
