@@ -19,6 +19,8 @@ Markdown
 - | **TC-004** | Add Product To Cart | ✅ |
 - | **TC-005** | Product Sorting (Filter Price Low to High) | ✅ |
 - | **TC-006** | Remove Product Out Of Cart | ✅ |
+- | **TC-007** | Verify Product Name In Cart | ✅ |
+- | **TC-008** | Verify Checkout Information | ✅ |
 - | **TC-000** | E2E Checkout: สั่งซื้อสินค้าและตรวจสอบความถูกต้องของราคารวม | ✅ |
 
 ## 🛠️ Tech Stack
