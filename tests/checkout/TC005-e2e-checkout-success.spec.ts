@@ -2,12 +2,16 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../src/pages/LoginPage'; 
 import { InventoryPage } from '../../src/pages/InventoryPage';
 import { CheckoutPage } from '../../src/pages/CheckoutPage';
+import { CartPage } from '../../src/pages/CartPage';
+import { CheckoutInformationPage } from '../../src/pages/CheckoutInformationPage';
 
 test('E2E Checkout Success', async ({ page }) => {
   //--- Valiable / Login ---
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
   const checkoutPage = new CheckoutPage(page);
+  const cartPage = new CartPage(page);
+  const checkoutinformationPage = new CheckoutInformationPage(page);
   const shoppingList = [
     'sauce-labs-backpack',
     'sauce-labs-bike-light',
@@ -22,8 +26,12 @@ test('E2E Checkout Success', async ({ page }) => {
   //--- Select Product --- 
   await inventoryPage.addItemToCart(shoppingList);
   await inventoryPage.goToCart();
+  //--- Go To Check Out ---
+  await cartPage.clickCheckout();
+  await expect(page).toHaveURL(/checkout-step-one/);
   //--- Checkout ---
-  await checkoutPage.fillInformation('test', 'test', '10000');
+  await checkoutinformationPage.fillInformation('testname', 'testlastname','postalcode');
+  await checkoutinformationPage.clickContinue();
 
   //--- Check Calculate Total Price ---
   await checkoutPage.verifyTotalPriceCalculation();
