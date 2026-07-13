@@ -21,6 +21,7 @@ Markdown
 - | **TC-006** | Remove Product Out Of Cart | ✅ |
 - | **TC-007** | Verify Product Name In Cart | ✅ |
 - | **TC-008** | Verify Checkout Information | ✅ |
+- | **TC-009** | Verify Overview Price | ✅ | AI MCP
 - | **TC-000** | E2E Checkout: สั่งซื้อสินค้าและตรวจสอบความถูกต้องของราคารวม | ✅ |
 
 ## 🛠️ Tech Stack
